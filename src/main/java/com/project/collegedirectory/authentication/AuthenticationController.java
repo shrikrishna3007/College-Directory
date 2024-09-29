@@ -2,6 +2,7 @@ package com.project.collegedirectory.authentication;
 
 import com.project.collegedirectory.configuraion.service.AuthenticationService;
 import com.project.collegedirectory.entity.UserEntity;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserEntity> signup(@RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<UserEntity> signup(@Valid @RequestBody SignUpRequest signUpRequest){
         return ResponseEntity.ok(authenticationService.signUp(signUpRequest));
     }
 
     @PostMapping("/signIn")
-    public ResponseEntity<JWTAuthenticationResponse> signIn(@RequestBody SignInRequest signInRequest){
+    public ResponseEntity<JWTAuthenticationResponse> signIn(@Valid @RequestBody SignInRequest signInRequest){
         return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }
 }
